@@ -1,6 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,500;6..12,700&family=Open+Sans:wght@400;500;600;900&display=swap');
 /******* Change Box Model ***************/
+
+:root{
+  
+  --header-title-size: 6vw;
+  --menu-font-size: 4vw;
+  --subtitle-font-size: 5vw;
+  --paragraph-font-size: 3.5vw;
+  --font-1: 'Nunito Sans', sans-serif;
+  --font-2: 'Open Sans', sans-serif;
+  --color-1: #FF6B35;
+  --color-2: #F7C59F;
+  --color-3: #EFEFD0;
+  --color-4: #004E89;
+  --color-5: #1A659E;
+
+
+}
+
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
+
+
+header{
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  grid-template-rows: 1 auto;
+  margin: 1vw;
+  
+}
+
+header #home {
+  grid-column: 1/2;
+  font-size: var(--header-title-size);
+  font-family: var(--font-1);
+
+}
+
+header #home a{
+  text-decoration: none;
+  font-weight: 700;
+}
+
+header #tools {
+  grid-column: 3/4;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header #tools a{
+  font-family: var(--font-2);
+  text-decoration: none;
+  font-size: var(--menu-font-size);
+
+}
+
+nav ul{
+  background-color: var(--color-4);
+  color: white;
+  list-style: none; 
+  margin: 0;  
+  padding: 0;  
+  display: flex; 
+  text-align: center;
+  font-size: var(--menu-font-size);
+}
+
+nav li { 
+  flex: 3;  
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+  font-family: var(--font-2);
+}
+
+nav li:hover{
+  background-color: var(--color-3);
+  color: black;
+  font-weight: bolder;
+}
+
+main{
+  font-family: var(--font-2);
+}
+
+main p{
+  font-size: var(--paragraph-font-size);
+}
+
+#hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3fr);
+}
+
+#hero #hero-welcome{
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 2;
+  margin-left: 4vw;
+}
+
+#hero #hero-welcome #welcome{
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+#hero #hero-welcome #delorean, #own-box{
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+#hero #hero-welcome #own-box{
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  opacity: 80%;
+}
+
+#hero #hero-welcome #own-box h2,p{
+  color:var(--color-4);
+  font-weight: 600;
+}
+
+#hero #hero-welcome #own-box h2{
+  font-size: var(--subtitle-font-size);
+  font-weight: 900;
+}
+
+#hero #hero-welcome #own-box #actionBtnOwn{
+  background-color: var(--color-4);
+  color: var(--color-3);
+  width: fit-content;
+  padding: 2vw;
+  border-radius: 10px;
+  font-weight: 900;
+  opacity: 1;
+  border: solid 2px var(--color-4);
+}
+
+#hero #hero-welcome #own-box #actionBtnOwn:hover{
+  background-color: var(--color-3);
+  box-shadow:  5px 5px 5px  #004E89;
+
+  border: solid 2px var(--color-3);
+  color: var(--color-4);
+}
+
+
+footer p{
+  font-family: var(--font-2);
+}
+
+
+

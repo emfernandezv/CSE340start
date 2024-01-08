@@ -1,0 +1,16 @@
+
+@media screen and (min-width: 551px) {
+
+:root{
+
+  --header-title-size: 5vw;
+  --menu-font-size: 2vw;
+}
+
+header #home {
+  font-size: var(--header-title-size);
+}
+
+
+
+}
