@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,500;6..12,700&family=Open+Sans:wght@400;500;600;900&display=swap');
+
 /******* Change Box Model ***************/
 
 :root{
@@ -7,6 +8,7 @@
   --menu-font-size: 4vw;
   --subtitle-font-size: 5vw;
   --paragraph-font-size: 3.5vw;
+  --footer-font-size: 4vw;
   --font-1: 'Nunito Sans', sans-serif;
   --font-2: 'Open Sans', sans-serif;
   --color-1: #FF6B35;
@@ -19,17 +21,13 @@
 }
 
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+
 
 
 header{
   display: grid;
   grid-template-columns: repeat(3,auto);
-  grid-template-rows: 1 auto;
+  grid-template-rows: auto;
   margin: 1vw;
   
 }
@@ -61,6 +59,10 @@ header #tools a{
 
 }
 
+ul{
+  font-size: var(--menu-font-size);
+}
+
 nav ul{
   background-color: var(--color-4);
   color: white;
@@ -69,7 +71,7 @@ nav ul{
   padding: 0;  
   display: flex; 
   text-align: center;
-  font-size: var(--menu-font-size);
+
 }
 
 nav li { 
@@ -80,8 +82,8 @@ nav li {
 }
 
 nav li:hover{
-  background-color: var(--color-3);
-  color: black;
+  background-color: var(--color-5);
+  
   font-weight: bolder;
 }
 
@@ -96,14 +98,15 @@ main p{
 #hero {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3fr);
+  grid-template-rows: repeat(3,auto);
 }
 
 #hero #hero-welcome{
+  grid-column: 1/2;
+  grid-row: 1/2;
   display: grid;
-  grid-template-columns: 1;
-  grid-template-rows: 2;
-  margin-left: 4vw;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2,auto);
 }
 
 #hero #hero-welcome #welcome{
@@ -121,40 +124,141 @@ main p{
   height: fit-content;
   background-color: white;
   opacity: 80%;
+  margin-left: 5vw;
+  padding-bottom: 5vw;
 }
 
-#hero #hero-welcome #own-box h2,p{
+#hero #hero-welcome #own-box h2,p,a{
   color:var(--color-4);
   font-weight: 600;
+
+}
+.linkS{
+text-decoration: none;
+color: white;
+font-size: var(--paragraph-font-size);
 }
 
-#hero #hero-welcome #own-box h2{
+h1, h2 {
   font-size: var(--subtitle-font-size);
   font-weight: 900;
 }
 
 #hero #hero-welcome #own-box #actionBtnOwn{
   background-color: var(--color-4);
-  color: var(--color-3);
+  color: white;
   width: fit-content;
-  padding: 2vw;
+  padding: 1vw;
   border-radius: 10px;
-  font-weight: 900;
-  opacity: 1;
+  font-weight: 700;
   border: solid 2px var(--color-4);
+  
 }
 
 #hero #hero-welcome #own-box #actionBtnOwn:hover{
-  background-color: var(--color-3);
-  box-shadow:  5px 5px 5px  #004E89;
+  background-color: var(--color-5);
+  box-shadow:  2px 5px 5px  #004E89;
+  font-weight: 900;
+  border: solid 2px var(--color-5);
+  
+}
 
-  border: solid 2px var(--color-3);
-  color: var(--color-4);
+#hero #hero-welcome #delorean{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hero #hero-welcome #delorean img{
+  width: 95vw;
+  height: auto;
+}
+
+#hero #hero-Reviews{
+  grid-column: 1/2;
+  grid-row: 2/3;
 }
 
 
+
+#hero #hero-Upgrades{
+  grid-column: 1/2;
+  grid-row: 3/4;
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-template-rows: repeat(2,auto);
+
+}
+
+#hero #hero-Upgrades h2{
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+#hero #hero-Upgrades #tableBox{
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: grid;
+  grid-template-columns: repeat(2,auto);
+  grid-template-rows: repeat(2,auto);
+  padding: 0;
+  justify-items: center;
+  align-items: center;
+  padding-left: 8vw;
+  padding-right: 8vw;
+}
+
+#hero #hero-Upgrades #tableBox #HBLT{
+  grid-column: 1/2;
+  grid-row: 1/2;
+  
+}
+
+#hero #hero-Upgrades #tableBox #HBRT{
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+#hero #hero-Upgrades #tableBox #HBLB{
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+#hero #hero-Upgrades #tableBox #HBRB{
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: max-content;
+  height: auto;
+  padding: 5vw;
+}
+
+.image {
+  width: 30vw;
+  height:  20vw;
+  background-color: var(--color-5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  text-align: center;
+  margin-top: 5px;
+  font-size: var(--paragraph-font-size);
+}
+
 footer p{
   font-family: var(--font-2);
+  font-size: var(--footer-font-size);
 }
 
 

@@ -1,16 +1,91 @@
-
 @media screen and (min-width: 551px) {
 
-:root{
+  :root {
+    /* Updated variable values */
+    --header-title-size: 5vw;
+    --subtitle-font-size: 4vw;
+    --menu-font-size: 2.5vw;
+    --footer-font-size: 1.5vw;
+    --color-4: #004E89;
+  }
 
-  --header-title-size: 5vw;
-  --menu-font-size: 2vw;
+  body {
+    background-image: url("/images/site/checkerboard.jpg");
+   }
+
+   
+   #wrapper{
+    background-color: white;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 8vw;
+    margin-bottom: 8vw;
+    border: solid 5px var(--color-4);
+   }
+
+   h1, h2 {
+    font-size: var(--subtitle-font-size);
+   }
+
+
+  header #home {
+    font-size: var(--header-title-size);
+  }
+
+  /* Adjustments to the hero section */
+  #hero {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  #hero #hero-welcome {
+    grid-column: 1/3;
+    grid-row: 1/2;
+  }
+
+  #hero #hero-welcome #delorean img{
+    width: 85vw;
+    height: auto;
+  }
+
+  #hero #hero-Reviews {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  #hero #hero-Upgrades {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  #hero #hero-Upgrades #tableBox {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+
+  /* Adjustments to box and image elements */
+  .box {
+    padding: 1vw;
+  }
+
+  .image {
+    width: 20vw;
+    height: 15vw;
+  }
+
+  .image img {
+    height: 10vw;
+    width: auto;
+  }
+
+  .link{
+    font-size: var(--menu-font-size);
+    }
+
+    footer p{
+      
+      font-size: var(--footer-font-size);
+    }
 }
 
-header #home {
-  font-size: var(--header-title-size);
-}
-
-
-
-}
