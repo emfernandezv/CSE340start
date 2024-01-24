@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,500;6..12,700&family=Open+Sans:wght@400;500;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,500;6..12,700&family=Open+Sans:wght@400;500;600;900&family=Rock+Salt&display=swap');
 
 /******* Change Box Model ***************/
 
@@ -11,6 +11,7 @@
   --footer-font-size: 4vw;
   --font-1: 'Nunito Sans', sans-serif;
   --font-2: 'Open Sans', sans-serif;
+  --font-3: 'Rock Salt', cursive;
   --color-1: #FF6B35;
   --color-2: #F7C59F;
   --color-3: #EFEFD0;
@@ -256,6 +257,43 @@ h1, h2 {
   font-size: var(--paragraph-font-size);
 }
 
+#error{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  grid-template-columns: auto auto;
+  grid-template-rows: 30% 20% 50%;
+  padding: 1vw;
+}
+
+#error img{
+  grid-column: 1/2;
+  grid-row: 1/4;
+  padding: 2vw;
+  border-radius: 25% 10%;
+  height: auto;
+  width: 35vw;
+}
+
+#error h1{
+  font-family: var(--font-3);
+  grid-column: 2/3;
+  margin: 3vw;
+}
+
+#error h2{
+  font-family: var(--font-3);
+  font-size: 1.5vw;
+  grid-column: 2/3;
+}
+
+#error p{
+  font-family: var(--font-2);
+  font-size: 1.5vw;
+  grid-column: 2/3;
+  padding: 2vw;
+}
 footer p{
   font-family: var(--font-2);
   font-size: var(--footer-font-size);
