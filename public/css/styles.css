@@ -294,6 +294,72 @@ h1, h2 {
   grid-column: 2/3;
   padding: 2vw;
 }
+
+#inv-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6,auto);
+  align-items: center;
+  align-content: center;
+
+}
+
+#inv-detail img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: auto;
+}
+
+#inv-detail h2{
+  text-align: left;
+  margin-left: 5vw;
+}
+
+#inv-detail #inv-det,#inv-desc{
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  padding: 0;
+  margin-left: 1vw;
+  margin-right: 1vw;
+
+}
+
+#inv-display li {
+  list-style-type: none;
+  text-align: center;
+  border: solid 1px black;
+  margin: 1vw;
+  padding: 1vw;
+  border-radius: 5%;
+}
+
+#inv-display li:hover {
+  border: solid 2px black;
+  background-color: var(--color-5);
+  
+}
+
+#inv-display li:hover a, li:hover span{
+  color: white;
+}
+
+#inv-display li img{
+  height: 15vw;
+  width: auto;
+  border-radius: 10%;
+}
+
+#inv-display li h2{
+font-size: var(--paragraph-font-size);
+}
+
 footer p{
   font-family: var(--font-2);
   font-size: var(--footer-font-size);
