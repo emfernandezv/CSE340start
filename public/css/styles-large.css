@@ -107,6 +107,13 @@
       font-size: var(--footer-font-size);
     }
 
+    #login span, #register span{
+      font-size: 1.5vw;
+      padding: 1vw;
+    } 
+
+
+
     #inv-detail #inv-desc{
       grid-column: 2/3;
       grid-row: 3/4;
