@@ -10,5 +10,6 @@
             "name": "workstation",
             "connectString": "postgres://cse340workstationef:WmYti4SrMHLUG8VNjAGlurszCyowMNXK@dpg-cmgbvi8l5elc73frj7u0-a.oregon-postgres.render.com/cse340workstationef"
         }
-    ]
+    ],
+    "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

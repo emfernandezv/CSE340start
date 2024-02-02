@@ -1,0 +1,23 @@
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+<%  }) %>
+  </ul>
+<% } %>
+
+<div class="container">
+  <div class="form-container">
+    <form id="register" action="/account/register" method="post">
+      <h1><%= title %></h1>
+        <input type="text" name="account_firstname" placeholder="First Name" required>
+        <input type="text" name="account_lastname" placeholder="Last Name"required>
+        <input type="email" name="account_email" placeholder="Email" required>
+        <input type="password" name="account_password" placeholder="Password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{12,}" required>
+        <button type="submit">Register</button>
+        <p>Already have an account? <a href="/account/login" >Login</a></p>
+    </form>'
+  </div>'
+</div>'

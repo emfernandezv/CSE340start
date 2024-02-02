@@ -87,7 +87,50 @@ Util.buildInventoryDetail = async function(data){
 }
 
 
+/* **************************************
+* Build the Log in view HTML
 
+* ************************************ */
+/*
+Util.getLogin = async function (title) {
+  let   form = '<div class="container">'
+          form += '<div class="form-container">'
+            form += '<form id="login">'
+              form += '<h1>'+title+'</h1>'
+              form += '  <input type="email" name="account_email" placeholder="Email">'
+              form += '  <input type="password" name="account_password" placeholder="Password" id="pword">'
+              form += '  <button type="submit">Sign In</button>'
+              form += '  <p>No account? <a href="/account/register" >Register</a></p>'
+            form += '</form>'
+          form += '</div>'
+        form += '</div>'
+        
+      return form
+}
+*/
+/* **************************************
+* Build the Register view HTML
+
+* ************************************ */
+/*
+Util.getRegister = async function (title) {
+  let   form = '<div class="container">'
+          form += '<div class="form-container">'
+            form += '<form id="register" action="/account/register" method="post">'
+              form += '<h1>'+title+'</h1>'
+              form += '  <input type="text" name="account_firstname" placeholder="First Name" required>'
+              form += '  <input type="text" name="account_lastName" placeholder="Last Name"required>'
+              form += '  <input type="email" name="account_email" placeholder="Email" required>'
+              form += '  <input type="password" name="account_password" placeholder="Password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{12,}" required>'
+              form += '  <button type="submit">Register</button>'
+              form += '  <p>Already have an account? <a href="/account/login" >Login</a></p>'
+            form += '</form>'
+          form += '</div>'
+        form += '</div>'
+        
+      return form
+}
+*/
 
 /* ****************************************
  * Middleware For Handling Errors
