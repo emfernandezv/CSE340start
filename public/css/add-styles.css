@@ -1,0 +1,79 @@
+
+:root{
+  
+    --header-title-size: 6vw;
+    --menu-font-size: 4vw;
+    --subtitle-font-size: 5vw;
+    --paragraph-font-size: 3.5vw;
+    --footer-font-size: 4vw;
+    --font-1: 'Nunito Sans', sans-serif;
+    --font-2: 'Open Sans', sans-serif;
+    --font-3: 'Rock Salt', cursive;
+    --color-1: #FF6B35;
+    --color-2: #F7C59F;
+    --color-3: #EFEFD0;
+    --color-4: #004E89;
+    --color-5: #1A659E;
+  
+  
+  }
+
+.add-container {
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
+
+.AddForm {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: auto;
+  }
+
+  
+.AddLabel {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: var(--paragraph-font-size);
+  }
+
+.AddForm input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 1vw;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: var(--paragraph-font-size);
+  }
+
+.AddInput:focus {
+    outline: none;
+    border-color: #6e7f80;
+  }
+
+.AddButton{
+    background-color: var(--color-4);
+    color: white;
+    font-size: var(--paragraph-font-size);
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+.AddButton:hover{
+    background-color: var(--color-5);
+    color: white;
+  }
+
+#classificationList {
+    width: 100%;
+    margin-bottom: 1vw;
+  }

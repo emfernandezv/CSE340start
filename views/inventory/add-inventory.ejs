@@ -1,0 +1,119 @@
+<link rel="stylesheet" href="/css/add-styles.css" >
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else 
+{ res.redirect('/') } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div id="add-inventory" class="add-container">
+  <form method="post" action="/inv/add-inventory" class="AddForm">
+    <label for="inventory" action="#" class="AddLabel"
+      >Classification:
+      <% if(classificationSelect) { %>
+        <%- classificationSelect %>
+       <% } %>
+    </label>
+    <label for="inventory" action="#" class="AddLabel"
+      >Make:
+      <input
+        type="text"
+        name="inv_make"
+        required
+        class="AddInput"
+      />
+    </label>
+    <label for="inventory" action="#" class="AddLabel"
+      >Model:
+      <input
+        type="text"
+        name="inv_model"
+        required
+        class="AddInput"
+      />
+    </label>
+    <label for="inventory" action="#" class="AddLabel"
+      >Year:
+      <input
+        type="number"
+        name="inv_year"
+        min="1111" 
+        max="9999"
+        required
+        class="AddInput"
+      />
+    </label>
+    <label for="inventory" action="#" class="AddLabel"
+      >Description:
+      <input
+        type="text"
+        name="inv_description"
+        required
+        class="AddInput"
+      />
+    </label>
+    <label for="inventory" action="#" class="AddLabel"
+    >Image path:
+    <input
+      type="text"
+      name="inv_image"
+      required
+      class="AddInput"
+      value="/images/vehicles/no-image.png"
+    />
+  </label>
+  <label for="inventory" action="#" class="AddLabel"
+  >Thumbnail path:
+  <input
+    type="text"
+    name="inv_thumbnail"
+    required
+    class="AddInput"
+    value="/images/vehicles/no-image-tn.png"
+  />
+</label>
+    <label for="inventory" action="#" class="AddLabel"
+      >Price:
+      <input
+        type="number"
+        name="inv_price"
+        required
+        class="AddInput"
+      />
+    </label>
+    <label for="inventory" action="#" class="AddLabel"
+      >Miles:
+      <input
+        type="number"
+        name="inv_miles"
+        required
+        class="AddInput"
+      />
+    </label>
+    <label for="inventory" action="#" class="AddLabel"
+      >Color:
+      <input
+        type="text"
+        name="inv_color"
+        required
+        class="AddInput"
+      />
+    </label>
+
+    <input
+      id="submitButton"
+      type="submit"
+      name="submit"
+      value="Submit"
+      class="AddButton"
+    />
+  </form>
+</div>

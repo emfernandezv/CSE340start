@@ -134,7 +134,7 @@ main p{
   font-weight: 600;
 
 }
-.linkS{
+.links{
 text-decoration: none;
 color: white;
 font-size: var(--paragraph-font-size);
@@ -349,6 +349,7 @@ h1, h2 {
 
 #inv-display li:hover a, li:hover span{
   color: white;
+  
 }
 
 #inv-display li img{
@@ -448,4 +449,11 @@ a:hover {
   right: 4%;
   cursor: pointer;
   color: lightgray;
+}
+
+#im-container {
+  padding-left: 5vw;
+}
+#im-container ul{
+  padding-left: 5vw;
 }

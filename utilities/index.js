@@ -15,7 +15,7 @@ Util.getNav = async function (req, res, next) {
       row.classification_id +
       '" title="See our inventory of ' +
       row.classification_name +
-      ' vehicles" class="linkS">' +
+      ' vehicles" class="links">' +
       row.classification_name +
       "</a>"
     list += "</li>"
@@ -23,9 +23,6 @@ Util.getNav = async function (req, res, next) {
   list += "</ul>"
   return list
 }
-
-
-
 
 /* **************************************
 * Build the classification view HTML
@@ -86,51 +83,25 @@ Util.buildInventoryDetail = async function(data){
     return detail
 }
 
+Util.buildClassificationSelect = async function(req, res, next){
+  let block;
+  let data = await invModel.getClassifications()
+  if (data.rowCount > 0){
+    block = '<br>'
+    block +=  '<select id="classificationList" name="classification_id" class="AddInput">';
+    block += '<option value="" class="AddInput" >Select..</option>'
+    data.rows.forEach((row) => {
+      block += '<option value="'+row.classification_id+'" class="AddInput">'
+      block += row.classification_name
+      block += '</option>'
+    })
+    block += '</select>';
+  }else{
+    block = '<p class="notice">There was an error trying to retrieve the classification list. Please try again.</p>'
+  }
+  return block;
+};
 
-/* **************************************
-* Build the Log in view HTML
-
-* ************************************ */
-/*
-Util.getLogin = async function (title) {
-  let   form = '<div class="container">'
-          form += '<div class="form-container">'
-            form += '<form id="login">'
-              form += '<h1>'+title+'</h1>'
-              form += '  <input type="email" name="account_email" placeholder="Email">'
-              form += '  <input type="password" name="account_password" placeholder="Password" id="pword">'
-              form += '  <button type="submit">Sign In</button>'
-              form += '  <p>No account? <a href="/account/register" >Register</a></p>'
-            form += '</form>'
-          form += '</div>'
-        form += '</div>'
-        
-      return form
-}
-*/
-/* **************************************
-* Build the Register view HTML
-
-* ************************************ */
-/*
-Util.getRegister = async function (title) {
-  let   form = '<div class="container">'
-          form += '<div class="form-container">'
-            form += '<form id="register" action="/account/register" method="post">'
-              form += '<h1>'+title+'</h1>'
-              form += '  <input type="text" name="account_firstname" placeholder="First Name" required>'
-              form += '  <input type="text" name="account_lastName" placeholder="Last Name"required>'
-              form += '  <input type="email" name="account_email" placeholder="Email" required>'
-              form += '  <input type="password" name="account_password" placeholder="Password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{12,}" required>'
-              form += '  <button type="submit">Register</button>'
-              form += '  <p>Already have an account? <a href="/account/login" >Login</a></p>'
-            form += '</form>'
-          form += '</div>'
-        form += '</div>'
-        
-      return form
-}
-*/
 
 /* ****************************************
  * Middleware For Handling Errors

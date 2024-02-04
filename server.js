@@ -14,7 +14,6 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 
-const detailRoute = require("./routes/detailRoute")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 
@@ -59,15 +58,8 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
-
-// Inventory routes
-app.use("/inv", inventoryRoute)
-
-// Detail routes
-app.use("/inv", detailRoute)
-
-// account
-app.use("/account", accountRoute)
+app.use("/inv", utilities.handleErrors(inventoryRoute)) // Inventory routes
+app.use("/account", utilities.handleErrors(accountRoute)) // account route
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
