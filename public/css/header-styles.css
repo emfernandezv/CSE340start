@@ -1,0 +1,34 @@
+header{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    grid-template-rows: auto;
+    margin: 1vw;
+    
+  }
+  
+  header #home {
+    grid-column: 1/2;
+    font-size: var(--header-title-size);
+    font-family: var(--font-1);
+  
+  }
+  
+  header #home a{
+    text-decoration: none;
+    font-weight: 700;
+  }
+  
+  header #tools {
+    grid-column: 3/4;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  header #tools a{
+    font-family: var(--font-2);
+    text-decoration: none;
+    font-size: var(--menu-font-size);
+  
+  }

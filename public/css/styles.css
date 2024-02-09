@@ -24,70 +24,6 @@
 
 
 
-
-header{
-  display: grid;
-  grid-template-columns: repeat(3,auto);
-  grid-template-rows: auto;
-  margin: 1vw;
-  
-}
-
-header #home {
-  grid-column: 1/2;
-  font-size: var(--header-title-size);
-  font-family: var(--font-1);
-
-}
-
-header #home a{
-  text-decoration: none;
-  font-weight: 700;
-}
-
-header #tools {
-  grid-column: 3/4;
-  text-align: right;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-header #tools a{
-  font-family: var(--font-2);
-  text-decoration: none;
-  font-size: var(--menu-font-size);
-
-}
-
-ul{
-  font-size: var(--menu-font-size);
-}
-
-nav ul{
-  background-color: var(--color-4);
-  color: white;
-  list-style: none; 
-  margin: 0;  
-  padding: 0;  
-  display: flex; 
-  text-align: center;
-
-}
-
-nav li { 
-  flex: 3;  
-  padding-top: 0.5vw;
-  padding-bottom: 0.5vw;
-  font-family: var(--font-2);
-}
-
-nav li:hover{
-  background-color: var(--color-5);
-  
-  font-weight: bolder;
-}
-
 main{
   font-family: var(--font-2);
 }
@@ -129,7 +65,9 @@ main p{
   padding-bottom: 5vw;
 }
 
-#hero #hero-welcome #own-box h2,p,a{
+#hero #hero-welcome #own-box h2,
+#hero #hero-welcome #own-box p,
+#hero #hero-welcome #own-box a{
   color:var(--color-4);
   font-weight: 600;
 
@@ -362,11 +300,6 @@ h1, h2 {
 font-size: var(--paragraph-font-size);
 }
 
-footer p{
-  font-family: var(--font-2);
-  font-size: var(--footer-font-size);
-}
-
 .container {
   text-align: center;
   justify-content: center;
@@ -424,12 +357,14 @@ button:hover {
   background-color: #0056b3;
 }
 
-a {
+#register a,
+#login a {
   color: #007bff;
   text-decoration: none;
 }
 
-a:hover {
+#register a:hover,
+#login a:hover {
   text-decoration: underline;
 }
 
