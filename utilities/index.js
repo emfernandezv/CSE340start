@@ -1,5 +1,8 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
+
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -83,7 +86,7 @@ Util.buildInventoryDetail = async function(data){
     return detail
 }
 
-Util.buildClassificationSelect = async function(req, res, next){
+Util.buildClassificationSelect = async function(selected_id = ""){
   let block;
   let data = await invModel.getClassifications()
   if (data.rowCount > 0){
@@ -91,7 +94,8 @@ Util.buildClassificationSelect = async function(req, res, next){
     block +=  '<select id="classificationList" name="classification_id" class="AddInput">';
     block += '<option value="" class="AddInput" >Select..</option>'
     data.rows.forEach((row) => {
-      block += '<option value="'+row.classification_id+'" class="AddInput">'
+      selected = (row.classification_id == selected_id)?"selected":""
+      block += '<option class="AddInput" value="'+row.classification_id+'" '+selected+' >'
       block += row.classification_name
       block += '</option>'
     })
@@ -101,6 +105,47 @@ Util.buildClassificationSelect = async function(req, res, next){
   }
   return block;
 };
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+   jwt.verify(
+    req.cookies.jwt,
+    process.env.ACCESS_TOKEN_SECRET,
+    function (err, accountData) {
+     if (err) {
+      req.flash("Please log in")
+      res.clearCookie("jwt")
+      return res.redirect("/account/login")
+     }
+     res.locals.accountData = accountData
+     res.locals.loggedin = 1
+     next()
+    })
+  } else {
+   next()
+  }
+ }
+
+/* Get list of classifications */
+ Util.buildGetClassification = async function(req, res, next){
+  let data = await invModel.getClassifications()
+  if (data.rowCount > 0){
+    return data.rows
+  } 
+}
+
+
+/* Get list of classifications */
+Util.buildGetInventory = async function(data){
+  let data1 = await invModel.getInventoryById(data)
+  
+  if (data1){
+    return data1[0]
+  } 
+}
 
 
 /* ****************************************

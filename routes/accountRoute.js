@@ -9,14 +9,15 @@ const regValidate = require('../utilities/account-validation')
 // Route to build login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
+//Route to default accounts
+router.get("/", utilities.checkJWTToken, utilities.handleErrors(accountController.accountManagement))
+
 // Process the login attempt
 router.post(
   "/login",
  regValidate.Login(),
  regValidate.checkLogData,
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+ utilities.handleErrors(accountController.accountLogin)
 )
 
 router.get("/register", utilities.handleErrors(accountController.buildRegister));

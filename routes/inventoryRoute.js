@@ -13,7 +13,7 @@ router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByI
 
 
 // Route to build inventory by classification view
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get("/", utilities.handleErrors(invController.buildManagementView ));
 
 // Route to build add classification view
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
@@ -21,12 +21,17 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 // Route to build add inventory view
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
-
-
-// Route to build add classification 
-router.post("/add-classification", regValidate.ClassificationRules(), regValidate.checkClassificationData, utilities.handleErrors(invController.registerClassification));
+//route to build the view to add inventory
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
 // Route to build add classification 
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Route to build post a new inventory
 router.post("/add-inventory",regValidate.InventoryRules(), regValidate.checkInventoryData,utilities.handleErrors(invController.registerInventory));
+
+// Route to build the view to modify an inventory
+router.get("/edit/:inv_id", utilities.handleErrors(invController.DislayInventoryEditView));
+
 
 module.exports = router;
