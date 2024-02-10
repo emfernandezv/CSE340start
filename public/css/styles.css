@@ -21,6 +21,15 @@
 
 }
 
+.notice {
+  color:black;
+  list-style-type: none;
+  background-color: lightyellow;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+  font-size: var(--paragraph-font-size);
+
+}
 
 
 

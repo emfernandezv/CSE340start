@@ -15,8 +15,8 @@
 <% } %>
 
 <div id="add-inventory" class="add-container">
-  <form method="post" action="/inv/update" class="AddForm">
-    <label for="inventory" action="#" class="AddLabel"
+  <form method="post" action="/inv/delete" class="AddForm">
+    <label for="inventory" action="#" class="AddLabel" disabled
       >Classification:
       <% if(classificationSelect) { %>
         <%- classificationSelect %>
@@ -31,6 +31,7 @@
         required
         class="AddInput"
         value="<%= inv_make %>"
+        readonly
       />
     </label>
     <label for="inventory" action="#" class="AddLabel"
@@ -41,6 +42,7 @@
         required
         class="AddInput"
         value="<%= inv_model %>"
+        readonly
       />
     </label>
     <label for="inventory" action="#" class="AddLabel"
@@ -53,37 +55,9 @@
         required
         class="AddInput"
         value="<%= inv_year %>"
+        readonly
       />
     </label>
-    <label for="inventory" action="#" class="AddLabel"
-      >Description:
-      <input
-        type="text"
-        name="inv_description"
-        required
-        class="AddInput"
-        value="<%= inv_description %>"
-      />
-    </label>
-    <label for="inventory" action="#" class="AddLabel"
-    >Image path:
-    <input
-      type="text"
-      name="inv_image"
-      required
-      class="AddInput"
-      value="<%= inv_image %>"
-    />
-  </label>
-  <label for="inventory" action="#" class="AddLabel"
-  >Thumbnail path:
-  <input
-    type="text"
-    name="inv_thumbnail"
-    required
-    class="AddInput"
-    value="<%= inv_thumbnail %>"
-  />
 </label>
     <label for="inventory" action="#" class="AddLabel"
       >Price:
@@ -93,34 +67,15 @@
         required
         class="AddInput"
         value="<%= inv_price %>"
+        readonly
       />
     </label>
-    <label for="inventory" action="#" class="AddLabel"
-      >Miles:
-      <input
-        type="number"
-        name="inv_miles"
-        required
-        class="AddInput"
-        value="<%= inv_miles %>"
-      />
-    </label>
-    <label for="inventory" action="#" class="AddLabel"
-      >Color:
-      <input
-        type="text"
-        name="inv_color"
-        required
-        class="AddInput"
-        value="<%= inv_color %>"
-      />
-    </label>
-
+    <p>Confirm Deletion - The delete is permanent.</p>
     <input
       id="submitButton"
       type="submit"
       name="submit"
-      value="Update Vehicle"
+      value="Delete Vehicle"
       class="AddButton"
     />
     <input type="hidden" name="inv_id"

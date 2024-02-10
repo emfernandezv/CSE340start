@@ -33,5 +33,14 @@ router.post("/add-inventory",regValidate.InventoryRules(), regValidate.checkInve
 // Route to build the view to modify an inventory
 router.get("/edit/:inv_id", utilities.handleErrors(invController.DislayInventoryEditView));
 
+// Route to build post the edit of an inventory
+router.post("/update/",regValidate.InventoryRules(), regValidate.checkUpdateData,utilities.handleErrors(invController.updateInventory));
+
+// Route to build the view to delete an inventory
+router.get("/delete/:inv_id", utilities.handleErrors(invController.DislayInventoryDeleteView));
+
+// Route to build post the delete of an inventory
+router.post("/delete/",utilities.handleErrors(invController.deleteInventory));
+
 
 module.exports = router;

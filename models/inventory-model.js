@@ -80,7 +80,50 @@ async function registerInventory (inv_make, inv_model, inv_year, inv_description
     return error.message
   }
 }
+/* *****************************
+*   edit Inventory
+* *************************** */
+async function updateInventory (inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
+  try {
+    const data = await pool.query(
+      ` UPDATE public.inventory 
+        SET   inv_make = $1, 
+              inv_model = $2, 
+              inv_description = $3, 
+              inv_image = $4, 
+              inv_thumbnail = $5, 
+              inv_price = $6, 
+              inv_year = $7, 
+              inv_miles = $8, 
+              inv_color = $9, 
+              classification_id = $10 
+        WHERE inv_id = $11 RETURNING *`,
+      [inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id]
+    )
+    return data.rows
+  } catch (error) {
+    console.error("update inventory error: " + error)
+    return error.message
+  }
+}
+
+/* *****************************
+*   delete Inventory
+* *************************** */
+async function deleteInventory (inv_id){
+  try {
+    const data = await pool.query(
+      ` DELETE FROM public.inventory 
+        WHERE inv_id = $1 RETURNING *`,
+      [inv_id]
+    )
+    return data.rows
+  } catch (error) {
+    console.error("delete inventory error: " + error)
+    return error.message
+  }
+}
 
 
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryById, registerClassification, registerInventory};
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryById, registerClassification, registerInventory, updateInventory, deleteInventory};
