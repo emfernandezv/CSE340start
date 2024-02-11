@@ -298,7 +298,7 @@ invCont.deleteInventory = async function(req, res, next){
     inv_id,  
   )
   if (deleteResult) {
-    req.flash("notice", `The ${itemName} was successfully delted.`)
+    req.flash("notice", `The ${itemName} was successfully deleted.`)
     res.redirect("/inv/")
   } else {
     req.flash("notice", "Sorry, the delete failed.")
