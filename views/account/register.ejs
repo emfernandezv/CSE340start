@@ -1,24 +1,46 @@
-<%- messages() %>
 
-<% if (errors) { %>
-  <ul class="notice">
-  <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-<%  }) %>
-  </ul>
-<% } %>
 
-<div class="container">
-  <div class="form-container">
-    <form id="register" action="/account/register" method="post">
-      <h1><%= title %></h1>
-        <input type="text" name="account_firstname" placeholder="First Name" required value="<%= locals.account_firstname %>">
-        <input type="text" name="account_lastname" placeholder="Last Name"required value="<%= locals.account_lastname %>">
-        <input type="email" name="account_email" placeholder="Email" required value="<%= locals.account_email %>">
-        <input type="password" name="account_password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
-        <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-        <button type="submit">Register</button>
-        <p>Already have an account? <a href="/account/login" >Login</a></p>
-    </form>'
-  </div>'
-</div>'
+  <%- messages() %>
+  <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <div id="register">
+    <form id="regForm" action="/account/register" method="post">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <% if (title) { %>
+          <h1><%= title %></h1>
+          <% } else {
+            res.redirect('/')
+          } %>
+      </div>
+      <div class="form-content">
+        <span class="tip">* Required</span>
+        <div class="form-element">
+          <input aria-label="First Name" placeholder="First Name  *" type="text" name="account_firstname" required aria-required="true" value="<%= locals.account_firstname %>" pattern="[A-Za-z ]{3,20}">
+      </div>
+      <div class="form-element">
+        <input aria-label="Last Name" placeholder="Last Name *" type="text" name="account_lastname"  required aria-required="true" value="<%= locals.account_lastname %>" pattern="[A-Za-z ]{3,20}">
+    </div>
+        <div class="form-element">
+          <input aria-label="account email" placeholder="Email *" type="email" name="account_email"  required aria-required="true" placeholder="Enter a valid email address" value="<%= locals.account_email %>" pattern="[a-zA-Z0-9.]{2,46}@[a-zA-Z0-9.]{2,46}.\w">
+        </div>
+        <div class="form-element">
+          <input id="password1" placeholder="Password *" aria-label="password" type="password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required aria-required="true">
+          <span class="tool-tip">Password must be at least 12 characters long and contain 1 capital, 1 number, and 1 special character.</span>
+        </div>
+        <div class="form-submit">
+            <input id="submitButton" type="submit" name="submit" value="Register" class="SubmitButton">
+        </div>
+      </div>
+      <div class="form-footer">
+        <span>Already have an Account? <a href="/account/login">Sign up.</a></span>
+      </div>
+    </div>
+    </form>
+  </div>

@@ -1,16 +1,15 @@
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
 
-  <%- messages() %>
-  <% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>
-
-  <div id="register">
-    <form action="/inv/update" method="post">
+  <div id="add-vehicle">
+      <form id="regForm" action="/inv/addVehicle" method="post">
       <div class="form-wrapper">
         <div class="form-header">
           <% if (title) { %>
@@ -35,7 +34,7 @@
           <div class="form-element">
             <label>
                 <span>Make: <span class="required">*</span></span>
-                <input aria-label="Vehicle Make" type="text" name="inv_make" required aria-required="true" value="<%= locals.inv_make %>" pattern="[A-Za-z ]{3,20}" >
+                <input aria-label="Vehicle Make" type="text" name="inv_make" required aria-required="true" value="<%= locals.inv_make %>" pattern="[A-Za-z ]{3,20}">
             </label>
           </div>
 
@@ -63,14 +62,14 @@
           <div class="form-element">
             <label>
                 <span>Image: <span class="required">*</span></span>
-                <input aria-label="Vehicle Image file" type="text" name="inv_image" required aria-required="true" value="<%= locals.inv_image %>">
+                <input aria-label="Vehicle Image file" type="text" name="inv_image" required aria-required="true" value="/images/vehicles/no-image.jpg">
             </label>
           </div>
 
           <div class="form-element">
             <label>
                 <span>Thumbnail: <span class="required">*</span></span>
-                <input aria-label="Vehicle Thumbnail" type="text" name="inv_thumbnail" required aria-required="true" value="<%= locals.inv_thumbnail %>">
+                <input aria-label="Vehicle Thumbnail" type="text" name="inv_thumbnail" required aria-required="true" value="/images/vehicles/no-image-tn.jpg">
             </label>
           </div>
 
@@ -96,13 +95,11 @@
           </div>
 
           <div class="form-submit">
-              <input id="submitButton" type="submit" name="submit" value="Update Vehicle" class="SubmitButton">
+              <input id="submitButton" type="submit" name="submit" value="Submit" class="SubmitButton">
           </div>
         </div>
         <div class="form-footer">
-          <input type="hidden" name="inv_id"
-          <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
-          <% } %>>
+          
         </div>
       </div>
       </form>

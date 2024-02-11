@@ -1,0 +1,59 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+<% if(locals.account_id != locals.accountData.account_id) {  %>
+  res.redirect('/account/update/<%- locals.accountData.account_id %>')
+<% } %>
+<% if(locals.account_id != locals.accountData.account_id) %>
+<div id="update-account">
+  <form action="/account/update" method="post">
+    <div class="form-element">
+      <label>
+        <span>First Name: <span class="required">*</span></span>
+        <input aria-label="First Name" type="text" name="account_firstname" required aria-required="true" pattern="[A-Za-z ]{3,50}" value="<%= locals.account_firstname %>">
+      </label>
+    </div>
+
+    <div class="form-element">
+      <label>
+        <span>Last Name: <span class="required">*</span></span>
+        <input aria-label="Last Name" type="text" name="account_lastname" required aria-required="true" pattern="[A-Za-z ]{3,50}" value="<%= locals.account_lastname %>">
+      </label>
+    </div>
+
+    <div class="form-element">
+      <label>
+        <span>Email: <span class="required">*</span></span>
+        <input aria-label="Email" type="email" name="account_email" required aria-required="true" value="<%= locals.account_email %>">
+      </label>
+    </div>
+    <input type="hidden" name="account_id" value="<%- locals.account_id %>">
+    <div class="form-submit">
+      <input id="submitButton" type="submit" name="submit" value="Update Account" class="SubmitButton">
+    </div>
+</form>
+<form action="/account/updatePassword" method="post">
+<div class="form-element">
+  <label>
+      <span>Password: <span class="required">*</span></span>
+      <input id="password1" aria-label="password" type="password"  name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required aria-required="true">
+      <span class="tool-tip">Password must be at least 12 characters long and contain 1 capital, 1 number, and 1 special character.</span>
+  </label>
+</div>
+    <input type="hidden" name="account_id" value="<%- locals.account_id %>">
+    <div class="form-submit">
+      <input id="pwResetButton" type="submit" name="submit" value="Update Password" class="SubmitButton">
+    </div>
+  </form>
+</div>

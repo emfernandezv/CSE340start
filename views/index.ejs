@@ -1,66 +1,60 @@
-<%#- messages() %>
-<div id="hero">
-    <div id="hero-welcome">
-        <h1 id="welcome">Welcome to CSE Motors!</h1>
-        <picture id="delorean">
-            <img src="/images/vehicles/delorean.jpg" alt="Delorean Small" loading="lazy" >
-        </picture>
-        <div id="own-box">
+<h1>Welcome to CSE Motors!</h1>
+<%- messages() %>
+<div id="vehicle-layout">
+    <section id="vehicle-cta">
+        <img id="vehicle-image" src="/images/vehicles/delorean.jpg" alt="A delorean">
+        <div class="cta-block left">
             <h2>DMC Delorean</h2>
-            <p>3 Cupholders <br>
-            Superman doors<br>
-            Fuzzy dice!</p>
-            <a id="actionBtnOwn" href="#" class="linkS">Own Today</a>
+            <ul class="attribs">
+                <li>3 cup holders</li>
+                <li>Superman doors</li>
+                <li>Fuzzy Dice!</li>
+            </ul>
+            <br>
+            <a href="#" >Own Today</a>
         </div>
-    </div>
-    <div id="hero-Upgrades">
+    </section>
+    <div id="details">
+    <section id="reviews" class="vehicle-detail">
+            <h2>DMC Delorean Reviews</h2>
+            <ul>
+                <li>"It's so fast, it's almost like traveling in time." (4/5)</li>
+                <li>"Coolest ride on the road." (4/5)</li>
+                <li>"I'm feeling McFly!" (5/5)</li>
+                <li>"The most futureistic ride of our day." (4.5/5)</li>
+                <li>"80's livin and lovin it!" (5/5)</li>
+            </ul>
+    </section>
+    
+    <section id="upgrades"  class="vehicle-detail">
         <h2>Delorean Upgrades</h2>
-        <div id="tableBox" class="box">
-            <div class="box" id="HBLT">
-                <div class="image">
-                    <img src="/images/upgrades/flux-cap.png" alt="Flux Capacitor" loading="lazy">
+        <div class="upgrades-wrapper">
+            <div class="upgrade-block">
+                <div class="img-wrapper">
+                    <img src="/images/upgrades/flux-cap.png" alt="flux-cap">
                 </div>
-                <div class="link">
-                  <a href="#">Flux Capacitor</a>
+                <span class="upgrade-title">Flux Capacitor</span>
+            </div>
+            <div class="upgrade-block">
+                <div class="img-wrapper">
+                    <img src="/images/upgrades/flame.jpg" alt="flame decals">
                 </div>
-              </div>
-              
-              <div class="box" id="HBRT">
-                <div class="image">
-                    <img src="/images/upgrades/flame.jpg" alt="Flame Decals" loading="lazy">
+                <span class="upgrade-title">Flame Decals</span>
+            </div>
+            <div class="upgrade-block">
+                <div class="img-wrapper">
+                    <img src="/images/upgrades/bumper_sticker.jpg" alt="bumper sticker">
                 </div>
-                <div class="link">
-                  <a href="#">Flame Decals</a>
+                <span class="upgrade-title">Bumper Sticker</span>
+            </div>
+            <div class="upgrade-block">
+                <div class="img-wrapper">
+                    <img src="/images/upgrades/hub-cap.jpg" alt="hub caps">
                 </div>
-              </div>
-              
-              <div class="box" id="HBLB"> 
-                <div class="image">
-                    <img src="/images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers" loading="lazy">
-                </div>
-                <div class="link">
-                  <a href="#">Bumper Stickers</a>
-                </div>
-              </div>
-              
-              <div class="box" id="HBRB">
-                <div class="image">
-                    <img src="/images/upgrades/hub-cap.jpg" alt="Hub Caps" loading="lazy">
-                </div>
-                <div class="link">
-                  <a href="#">Hub Caps</a>
-                </div>
-              </div>
+                <span class="upgrade-title">Hub Caps</span>
+            </div>
         </div>
-    </div>
-    <div id="hero-Reviews">
-        <h2>DMC Delorean Reviews</h2>
-        <ul>
-            <li>"So fast it's almost like traveling in time"(4/5)</li>
-            <li>"Coolest ride on the road"(4/5)</li>
-            <li>"I'm feeling McFly"(5/5)</li>
-            <li>"The most futuristic ride of our day"(4/5)</li>
-            <li>"80's living and I love it"(5/5)</li>
-        </ul>
-    </div>
+    </section>
+</div>
+
 </div>

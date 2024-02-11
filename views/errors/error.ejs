@@ -1,12 +1,12 @@
-<section id="error">
 <% if (title) { %>
-   <img src="/images/site/cbew-error.jpg" alt="error chewbacca">
-    <h1>Ooops!</h1>
-    <h2><%= title %> - PAGE NOT FOUND</h2>
+  <div id="error-container">
+    <img src="/images/site/cbew-error.jpg" alt="error chewbacca">
+  <h1>Ooops!</h1>
+  <h2><%= title %> - PAGE NOT FOUND</h2>
+</div>
+  <%- message %>
     <% } else {
-        res.redirect('/')
+      res.redirect('/')
     } %>
-    
-    <p>    <%- message %></p>
-</section>
 
+    

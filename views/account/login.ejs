@@ -1,23 +1,39 @@
-<%- messages() %>
-
-<% if (errors) { %>
-  <ul class="notice">
-  <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-<%  }) %>
-  </ul>
-<% } %>
 
 
-<div class="container">
-  <div class="form-container">
-    <form id="login" action="/account/login" method="post">
-      <h1><%= title %></h1>
-      <input type="email" name="account_email" placeholder="Email" required value="<%= locals.account_email %>">
-      <input type="password" name="account_password" placeholder="Password" id="pword"   required>
-      <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-      <button type="submit">Sign In</button>
-      <p>No account? <a href="/account/register" >Register</a></p>
-    </form>
-  </div>
-</div>
+  <%# messages() %>
+  <% if (errors) { %>
+      <ul class="notice">
+     <% errors.array().forEach(error => { %>
+       <li><%= error.msg %></li>
+    <%  }) %>
+     </ul>
+    <% } %>
+
+  <div id="login">
+      <form id="loginForm" action="/account/login" method="post">
+      <div class="form-wrapper">
+        <div class="form-header">
+          <% if (title) { %>
+            <h1><%= title %></h1>
+            <% } else {
+              res.redirect('/')
+            } %>
+        </div>
+        <div class="form-content">
+          <div class="form-element">
+            <input aria-label="account email" placeholder="Email" type="email" name="account_email" required aria-required="true" value="<%= locals.account_email %>">
+          </div>
+          <div class="form-element">
+              <input aria-label="password" placeholder="Password" type="password" name="account_password" required aria-required="true"  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+              <span class="tool-tip">Password must be at least 12 characters long and contain 1 capital, 1 number, and 1 special character.</span>
+          </div>
+          <div class="form-submit">
+              <input id="submitButton" type="submit" name="submit" value="Sign In" class="SubmitButton">
+          </div>
+        </div>
+        <div class="form-footer">
+          <span>Need and Account? <a href="/account/register">Sign up.</a></span>
+        </div>
+      </div>
+      </form>
+    </div>

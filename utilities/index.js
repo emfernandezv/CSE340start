@@ -1,16 +1,15 @@
 const invModel = require("../models/inventory-model")
+const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
-const Util = {}
-
 
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  let list = "<ul id='navigationList'>"
-  list += '<li><a href="/" title="Home page" class="links">Home</a></li>'
+  let list = "<ul>"
+  list += '<li><a href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
     list += "<li>"
     list +=
@@ -18,18 +17,17 @@ Util.getNav = async function (req, res, next) {
       row.classification_id +
       '" title="See our inventory of ' +
       row.classification_name +
-      ' vehicles" class="links">' +
+      ' vehicles">' +
       row.classification_name +
       "</a>"
     list += "</li>"
   })
   list += "</ul>"
   return list
-}
+};
 
 /* **************************************
 * Build the classification view HTML
-
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
     let grid
@@ -41,9 +39,9 @@ Util.buildClassificationGrid = async function(data){
         + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
         + 'details"><img src="' + vehicle.inv_thumbnail 
         +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-        +' on CSE Motors" ></a>'
+        +' on CSE Motors" /></a>'
         grid += '<div class="namePrice">'
-        grid += '<hr>'
+        grid += '<hr />'
         grid += '<h2>'
         grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
         + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
@@ -59,52 +57,61 @@ Util.buildClassificationGrid = async function(data){
       grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
-}
+  };
 
-/* **************************************
-* Build the Detail view HTML
+  /**************************************
+   * Build Single Vehicle Inventory Block
+   **************************************/
+  Util.buildSingleInventoryBlock = async function(data){
+    let block
+    vehicle = data[0]
+    if (data.length>0){
+        block ='<div id="vehicle-layout" class="single-vehicle-view">'
+        block += '<div id="details">'
+        block += '<section id="reviews" class="vehicle-detail">'
+        block += '    <img id="vehicle-image" src="'+ vehicle.inv_image
+        +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+        +' on CSE Motors">'
+        block += '</section>'
+        block += '<section id="reviews-description" class="vehicle-detail">'
+        block += '        <h2>'+vehicle.inv_make+' '+vehicle.inv_model+' Details</h2>  '
+        block += '        <p><b>Price: </b>$' +new Intl.NumberFormat('en-US').format(vehicle.inv_price)+ '</p>'
+        block += '        <p><b>Milage: </b>' +new Intl.NumberFormat('en-US').format(vehicle.inv_miles)+ '</p>'
+        block += '        <p><b>Description: </b>' +vehicle.inv_description+ '</p>'
+        block += '</section>'
 
-* ************************************ */
-Util.buildInventoryDetail = async function(data){
-  let detail
-  if(data.length > 0){
-      detail = '<div id="inv-detail">'
-      detail += '<img src="' + data[0].inv_image+'" alt="Image of '+ data[0].inv_make + ' ' + data[0].inv_model +'" >'
-      detail += '<h2 >'+data[0].inv_make+' '+data[0].inv_model+' Details</h2>'
-      detail += '<div id="inv-det">'
-        detail += '<p ><strong>Price: $</strong>'+ new Intl.NumberFormat('en-US').format(data[0].inv_price)+'</p>'
-        detail += '<p ><strong>Color: </strong>'+data[0].inv_color+'</p>'
-        detail += '<p ><strong>Miles: </strong>'+data[0].inv_miles+'</p>'
-      detail += '</div>'
-      detail += '<div id="inv-desc">'
-      detail += '<p ><strong>Description: </strong>'+data[0].inv_description+'</p>'
-      detail += '</div>'
-      detail += '</div>'
-  }else { 
-      detail += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+        block+='</div>'
+    } else {
+      block += '<p class="notice">Sorry, we were unable to find this vehicle in our inventory.</p>'
     }
-    return detail
-}
+    return block
+  };
 
-Util.buildClassificationSelect = async function(selected_id = ""){
-  let block;
-  let data = await invModel.getClassifications()
-  if (data.rowCount > 0){
-    block = '<br>'
-    block +=  '<select id="classificationList" name="classification_id" class="AddInput">';
-    block += '<option value="" class="AddInput" >Select..</option>'
-    data.rows.forEach((row) => {
-      selected = (row.classification_id == selected_id)?"selected":""
-      block += '<option class="AddInput" value="'+row.classification_id+'" '+selected+' >'
-      block += row.classification_name
-      block += '</option>'
-    })
-    block += '</select>';
-  }else{
-    block = '<p class="notice">There was an error trying to retrieve the classification list. Please try again.</p>'
-  }
-  return block;
-};
+  Util.buildClassificationSelect = async function(selected_id = ""){
+    let block;
+    let data = await invModel.getClassifications()
+    if (data.rowCount > 0){
+      block =  '<select id="classificationList" name="classification_id">';
+      block += '<option value="">Select..</option>'
+      data.rows.forEach((row) => {
+        selected = (row.classification_id == selected_id)?"selected":""
+        block += '<option value="'+row.classification_id+'" '+selected+'>'
+        block += row.classification_name
+        block += '</option>'
+      })
+      block += '</select>';
+    }else{
+      block = '<p class="notice">Sorry, we are unable to retrieve a list of classifications at this time, please check the connection to the database.</p>'
+    }
+    return block;
+  };
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 /* ****************************************
 * Middleware to check token validity
@@ -129,31 +136,47 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
-/* Get list of classifications */
- Util.buildGetClassification = async function(req, res, next){
-  let data = await invModel.getClassifications()
-  if (data.rowCount > 0){
-    return data.rows
-  } 
-}
+ /* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.
+    locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
 
-
-/* Get list of classifications */
-Util.buildGetInventory = async function(data){
-  let data1 = await invModel.getInventoryById(data)
-  
-  if (data1){
-    return data1[0]
-  } 
-}
-
-
+  /* ****************************************
+ *  Check Account Type   'Client', 'Employee', 'Admin'
+ * ************************************ */
+  Util.checkAccountType = (req, res, next) => {
+    if (res.locals.accountData) {
+      if(res.locals.accountData.account_type == "Employee" || res.locals.accountData.account_type == "Admin") next()
+    } else {
+      req.flash("notice", "You are not authorized to access this page")
+      return res.redirect("/")
+    }
+   }
 /* ****************************************
- * Middleware For Handling Errors
- * Wrap other function in this for
- * General Error Handling
- **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
- 
+ *  Check Account Type   'Client', 'Employee', 'Admin'
+ * ************************************ */
+  Util.checkAccountUpdateAccess = (req, res, next) => {
+    if (res.locals.accountData) {
+      if(res.locals.accountData.account_type == "Employee" || res.locals.accountData.account_type == "Admin"){
+        next()
+      }else{
+        if(res.locals.account_id != res.locals.accountData.account_id){
+          req.flash("notice", "You are not authorized to access this page")
+      return res.redirect("/")
+        }
+      }
+    } else {
+      req.flash("notice", "You are not authorized to access this page")
+      return res.redirect("/")
+    }
+   }
 
 module.exports = Util

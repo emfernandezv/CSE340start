@@ -1,9 +1,54 @@
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+  <h1><%= title %></h1>
+<% } else {
+  res.redirect('/');
+} %>
 
-    <%# messages() %>
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+  <section>
+   
+    <% if ((locals.loggedin) ) { %>
+      <h2>Welcome, <%- locals.accountData.account_firstname %></h2>
+      <p><a href="/account/update/<%- locals.accountData.account_id %>" title="manage inventory">Manage Account</a></p> 
+    <% } 
+    if (locals.accountData.account_type == 'Employee' || locals.accountData.account_type == 'Admin'){ %>
+      <h3>Manage Inventory</h3>
+      <p><a href="/inv/" title="manage inventory">Manage Inventory</a></p> 
+    <% } %>
 
-   <div>You're logged in!</div>
+   <!-- <h2>Manage Accounts</h2>
+      <div><a href="/inv/addAccount">Add an Account</a></div>
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td><%# account_firstname %></td>
+            <td><%# account_lastname %></td>
+            <td><%# account_email %></td>
+            <td>
+              <a href='/account/edit/<%# account_id  %>' >Update</a>
+              <a href='/account/delete/<%# account_id  %>' >Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <noscript>JavaScript must be enabled to use this page.</noscript>
+  </section>
+  <script src="../../js/account.js"></script>
+-->
