@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const reportRoute = require('./routes/reportRoute');
 const utilities = require("./utilities/")
 const session = require("express-session")
 const bodyParser = require("body-parser")
@@ -63,6 +64,7 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", utilities.handleErrors(inventoryRoute))
 app.use("/account", utilities.handleErrors(accountRoute))
+app.use('/report', utilities.handleErrors(reportRoute));
 
 app.use('/logout', (req, res)=>{ 
   res.clearCookie("jwt")

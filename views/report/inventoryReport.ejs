@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/css/report-styles.css" >
+
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <p>*Click on the header to sort.</p>
+    <% } else {
+      res.redirect('/')
+    } %>
+    <table>
+        <thead>
+            <tr>
+                <th data-sortable="classification_name">Classification</th>
+                <th data-sortable="inv_make">Make</th>
+                <th data-sortable="inv_model">Model</th>
+                <th data-sortable="inv_year">Year</th>
+                <th>Thumbnail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% inventoryReport.forEach(item => { %>
+                <tr>
+                    <td data-classification_name><%= item.classification_name %></td>
+                    <td data-inv_make><%= item.inv_make %></td>
+                    <td data-inv_model><%= item.inv_model %></td>
+                    <td data-inv_year><%= item.inv_year %></td>
+                    <td><img src="<%= item.inv_thumbnail %>" alt="Thumbnail"></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+  
